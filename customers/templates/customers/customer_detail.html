@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ customer.name }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body{
+            margin-top: -50px;
+        }
+        .anchor {
+            text-decoration: none;
+            color: white;
+        }
+        .h {
+            background-color: rgb(0, 0, 0);
+            margin-top: -2px;
+            width: 100%;
+            height: 60px;
+            color: wheat;
+    
+
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://img.freepik.com/free-vector/man-paying-online-receiving-cashback-wallet_88138-692.jpg?w=1060&t=st=1720522336~exp=1720522936~hmac=97f9a13ef73a4fc0adc8683f15eb1062ac476418476fe174db02ea5fc4999107');
+            background-repeat: no-repeat;
+            background-size: 1300px 500px;
+            background-position: center;
+            background-attachment: fixed;
+            filter: blur(10px); /* Adjust the blur level here */
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1 class="h" style="font-family: serif; text-shadow: 1px 1px ;">Bank Transfer System</h1>
+            <br/><br/>
+            <h3>Name: {{ customer.name }}</h3>
+            <p>Email: {{ customer.email }}</p>
+            <p>Balance: {{ customer.balance }}</p>
+            <button type="button" class="btn btn-warning"><a class="anchor" href="{% url 'transfer_money' customer.pk %}"style="color:rgb(82, 82, 82);"><b>Transfer Money</b></a></button>
+            <button type="button" class="btn btn-info"><a class="anchor" href="{% url 'customers_list' %}" style="color:rgb(82, 82, 82);"><b>Back to All Customers</b></a></button>
+        </div>
+    </div>
+</body>
+</html>

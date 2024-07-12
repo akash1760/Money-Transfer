@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transfer Money</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<script>
+    let x = document.forms["amount"].value;
+    function showPopup() {
+        if(x=="")
+    {
+        if(x>customer.amount)
+        alert("All fields are mandatory");
+    }
+    else{
+        alert("Money is Transferred..!");
+
+
+    }
+    }
+</script>
+
+<style>
+    .anchor{
+        text-decoration: none;
+        color: black;
+    }
+    body{
+       margin-top: -50px;
+    }
+    .h{
+    background-color: rgb(0, 0, 0);
+    margin-top: -2px;
+        width:1482px;
+        height: 60px;
+        margin-left: -10px;
+        color: wheat;
+        
+}
+.container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://img.freepik.com/free-vector/man-paying-online-receiving-cashback-wallet_88138-692.jpg?w=1060&t=st=1720522336~exp=1720522936~hmac=97f9a13ef73a4fc0adc8683f15eb1062ac476418476fe174db02ea5fc4999107');
+            background-repeat: no-repeat;
+            background-size: 1300px 500px;
+            background-position: center;
+            background-attachment: fixed;
+            filter: blur(25px); /* Adjust the blur level here */
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            margin-top: 50px;
+        }
+</style>
+<body>
+    <div class="container">
+        <div class="content">
+
+        
+    <center>
+    <h1 class="h" style="font-family: serif; text-shadow: 1px 1px ;">Welcome to the Bank Transfer System</h1>
+<br/><br/>
+    <h3>Transfer Money from {{ from_customer.name }}</h3>   
+    <form method="post">
+        {% csrf_token %}
+        <br/><br/>
+        <label for="to_customer">To Customer:</label>
+        <select style="width: 200px;inline-size: 200px;" name="to_customer" id="to_customer">
+            {% for customer in customers %}
+                <option value="{{ customer.pk }}">{{ customer.name }}</option>
+            {% endfor %}
+        </select><br/>
+        <br/>
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" id="amount" step="0.01" required style="width: 200px;margin-left: 30px;"><br/><br/>
+        <button type="submit" class="btn btn-warning" onclick="showPopup()" style="color: rgb(82, 82, 82);"><b>Transfer</b></button>
+    </form><br/>
+    <button type="button" class="btn btn-info"  ><a href="{% url 'customer_detail' from_customer.pk %}" style="color: rgb(82, 82, 82);text-decoration: none;"><b>Back to Customer Details</b></a></button> 
+</div>
+</div>
+</center>
+
+</body>
+</html>
